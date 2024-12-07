@@ -1,0 +1,89 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/space-grotesk/700.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description = "Transform your body and life with our comprehensive weight loss and body transformation platform. Expert guidance, proven methods, and supportive community.", 
+  image = "/og-image.jpg" 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title ? `${title} | Transformation Made Easy` : 'Transformation Made Easy - Your Journey to a Better You'}</title>
+    <meta name="title" content={title ? `${title} | Transformation Made Easy` : 'Transformation Made Easy - Your Journey to a Better You'} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title ? `${title} | Transformation Made Easy` : 'Transformation Made Easy - Your Journey to a Better You'} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title ? `${title} | Transformation Made Easy` : 'Transformation Made Easy - Your Journey to a Better You'} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Additional SEO tags -->
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="weight loss, body transformation, fitness, nutrition, health coaching, wellness, diet, exercise, healthy lifestyle, personal training" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: 79, 70, 229;  /* Indigo 600 */
+    --primary-light: 99, 102, 241;  /* Indigo 500 */
+    --primary-dark: 67, 56, 202;  /* Indigo 700 */
+    --accent: 6, 182, 212;  /* Cyan 500 */
+    --gradient: linear-gradient(
+      45deg,
+      rgb(var(--primary)),
+      rgb(var(--accent))
+    );
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+</style>

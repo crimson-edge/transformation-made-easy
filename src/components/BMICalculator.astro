@@ -1,0 +1,128 @@
+---
+---
+
+<div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">BMI Calculator</h2>
+  <form id="bmiForm" class="space-y-4">
+    <div>
+      <label for="weight" class="block text-sm font-medium text-gray-700">Weight</label>
+      <div class="mt-1 relative rounded-md shadow-sm">
+        <input
+          type="number"
+          name="weight"
+          id="weight"
+          class="focus:ring-primary-500 focus:border-primary-500 block w-full pr-16 sm:text-sm border-gray-300 rounded-md"
+          placeholder="0.0"
+        />
+        <div class="absolute inset-y-0 right-0 flex items-center">
+          <label for="weight-unit" class="sr-only">Weight Unit</label>
+          <select
+            id="weight-unit"
+            name="weight-unit"
+            class="focus:ring-primary-500 focus:border-primary-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-r-md"
+          >
+            <option>kg</option>
+            <option>lbs</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="height" class="block text-sm font-medium text-gray-700">Height</label>
+      <div class="mt-1 relative rounded-md shadow-sm">
+        <input
+          type="number"
+          name="height"
+          id="height"
+          class="focus:ring-primary-500 focus:border-primary-500 block w-full pr-16 sm:text-sm border-gray-300 rounded-md"
+          placeholder="0.0"
+        />
+        <div class="absolute inset-y-0 right-0 flex items-center">
+          <label for="height-unit" class="sr-only">Height Unit</label>
+          <select
+            id="height-unit"
+            name="height-unit"
+            class="focus:ring-primary-500 focus:border-primary-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-r-md"
+          >
+            <option>cm</option>
+            <option>inches</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+    >
+      Calculate BMI
+    </button>
+  </form>
+
+  <div id="bmiResult" class="mt-6 hidden">
+    <div class="text-center">
+      <p class="text-lg font-medium text-gray-900">Your BMI:</p>
+      <p id="bmiValue" class="text-3xl font-bold text-primary-600"></p>
+      <p id="bmiCategory" class="mt-2 text-sm text-gray-500"></p>
+    </div>
+    <div class="mt-4">
+      <h3 class="text-sm font-medium text-gray-900">BMI Categories:</h3>
+      <ul class="mt-2 text-sm text-gray-500 list-disc list-inside">
+        <li>Underweight: &lt; 18.5</li>
+        <li>Normal weight: 18.5 - 24.9</li>
+        <li>Overweight: 25 - 29.9</li>
+        <li>Obesity: ≥ 30</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  function calculateBMI(weight: number, height: number, weightUnit: string, heightUnit: string): number {
+    // Convert to metric if necessary
+    if (weightUnit === 'lbs') {
+      weight = weight * 0.453592; // Convert pounds to kg
+    }
+    if (heightUnit === 'inches') {
+      height = height * 2.54; // Convert inches to cm
+    }
+    
+    // Convert height to meters
+    height = height / 100;
+    
+    // Calculate BMI
+    return weight / (height * height);
+  }
+
+  function getBMICategory(bmi: number): string {
+    if (bmi < 18.5) return 'Underweight';
+    if (bmi < 25) return 'Normal weight';
+    if (bmi < 30) return 'Overweight';
+    return 'Obesity';
+  }
+
+  document.getElementById('bmiForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const weight = parseFloat((document.getElementById('weight') as HTMLInputElement).value);
+    const height = parseFloat((document.getElementById('height') as HTMLInputElement).value);
+    const weightUnit = (document.getElementById('weight-unit') as HTMLSelectElement).value;
+    const heightUnit = (document.getElementById('height-unit') as HTMLSelectElement).value;
+    
+    if (weight && height) {
+      const bmi = calculateBMI(weight, height, weightUnit, heightUnit);
+      const category = getBMICategory(bmi);
+      
+      const resultDiv = document.getElementById('bmiResult');
+      const bmiValueElement = document.getElementById('bmiValue');
+      const bmiCategoryElement = document.getElementById('bmiCategory');
+      
+      if (resultDiv && bmiValueElement && bmiCategoryElement) {
+        resultDiv.classList.remove('hidden');
+        bmiValueElement.textContent = bmi.toFixed(1);
+        bmiCategoryElement.textContent = `Category: ${category}`;
+      }
+    }
+  });
+</script>

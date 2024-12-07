@@ -1,0 +1,14 @@
+---
+interface Props {
+  name: string;
+  href: string;
+  icon: string;
+}
+
+const { name, href, icon } = Astro.props;
+---
+
+<a href={href} class="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener noreferrer">
+  <span class="sr-only">{name}</span>
+  <Fragment set:html={icon} />
+</a>
