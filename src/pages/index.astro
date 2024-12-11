@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import VideoHero from '../components/VideoHero.astro';
+import BMICalculator from '../components/BMICalculator.astro';
 ---
 
 <Layout title="Transform Your Body | Peptizen">
@@ -29,6 +30,25 @@ import VideoHero from '../components/VideoHero.astro';
               BMI Calculator
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BMI Calculator Section -->
+    <section class="bg-white" id="calculator">
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+            <span class="block">Welcome to Transformation Made Easy</span>
+            <span class="block text-primary-600">Your Journey to a Better You</span>
+          </h1>
+          <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
+            Discover the tools and resources to transform your body and life.
+          </p>
+        </div>
+
+        <div class="mt-20">
+          <BMICalculator />
         </div>
       </div>
     </section>
