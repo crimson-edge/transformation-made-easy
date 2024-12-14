@@ -1,0 +1,69 @@
+---
+const testimonials = [
+  {
+    name: "Michael R.",
+    role: "Lost 45 lbs in 6 months",
+    image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&h=400&fit=crop&crop=faces&auto=format&q=80",
+    quote: "The structured approach and medical guidance made all the difference. I've tried many programs before, but this is the first one that gave me sustainable results.",
+    location: "San Francisco, CA"
+  },
+  {
+    name: "Sarah K.",
+    role: "Maintained weight loss for 2 years",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=faces&auto=format&q=80",
+    quote: "Not just another diet program - it's a complete transformation system. The combination of nutrition guidance and workout plans helped me achieve my goals and maintain them.",
+    location: "Austin, TX"
+  },
+  {
+    name: "David W.",
+    role: "Gained muscle while losing fat",
+    image: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=400&h=400&fit=crop&crop=faces&auto=format&q=80",
+    quote: "The personalized approach to body recomposition was exactly what I needed. I've not only lost fat but also gained significant muscle mass. The results speak for themselves.",
+    location: "Chicago, IL"
+  }
+];
+---
+
+<section class="py-12 bg-gradient-to-b from-gray-50 to-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-cyan-500 bg-clip-text text-transparent">
+        Transformation Stories
+      </h2>
+      <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+        Real results from real people who've transformed their bodies with our program
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-8 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8">
+      {testimonials.map((testimonial) => (
+        <div class="relative bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition duration-300 hover:shadow-lg">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <div class="inline-block relative">
+              <div class="h-16 w-16 rounded-full border-4 border-white shadow-sm overflow-hidden">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="absolute bottom-0 right-0 h-4 w-4 rounded-full bg-green-400 border-2 border-white"></div>
+            </div>
+          </div>
+
+          <div class="pt-12 text-center">
+            <blockquote>
+              <p class="text-gray-600 italic">"{testimonial.quote}"</p>
+            </blockquote>
+            
+            <div class="mt-6">
+              <div class="font-semibold text-gray-900">{testimonial.name}</div>
+              <div class="text-cyan-600 font-medium text-sm">{testimonial.role}</div>
+              <div class="text-gray-500 text-sm mt-1">{testimonial.location}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

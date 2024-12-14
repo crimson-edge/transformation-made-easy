@@ -1,0 +1,51 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FaqItem[] = [
+  {
+    question: "What makes Transformation Made Easy different from other fitness programs?",
+    answer: "Our program takes a holistic approach to transformation, combining proven medical weight loss strategies, nutritional guidance, and personalized fitness plans. We focus on sustainable lifestyle changes rather than quick fixes, ensuring long-term success."
+  },
+  {
+    question: "How long does it typically take to see results?",
+    answer: "While results vary by individual, most clients start seeing noticeable changes within 4-6 weeks when following our program consistently. However, sustainable transformation is a journey, and we focus on long-term success rather than quick, temporary results."
+  },
+  {
+    question: "Do I need special equipment to follow your program?",
+    answer: "While we do recommend some basic equipment for optimal results, many of our exercises can be modified for bodyweight-only workouts. Check our Equipment Guide for recommended items that can enhance your transformation journey."
+  },
+  {
+    question: "Is the Keto diet necessary for success?",
+    answer: "No, while we offer comprehensive Keto guidance for those interested, it's not mandatory. We believe in finding the right nutritional approach for each individual and offer various dietary strategies to support your goals."
+  },
+  {
+    question: "How do you support clients throughout their transformation journey?",
+    answer: "We provide ongoing support through detailed guides, regular content updates, community engagement, and access to evidence-based resources. Our medical weight loss expertise ensures you're following safe and effective methods."
+  },
+  {
+    question: "Can I follow the program if I have existing health conditions?",
+    answer: "We always recommend consulting with your healthcare provider before starting any new fitness or nutrition program. Our medical weight loss approach takes various health conditions into consideration, but personal medical guidance is essential."
+  }
+];
+---
+
+<div class="py-12 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Frequently Asked Questions</h2>
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-6">
+        {faqs.map((faq, index) => (
+          <div class="bg-white rounded-lg shadow-sm p-6" itemscope itemtype="https://schema.org/Question">
+            <h3 class="text-lg font-semibold text-gray-900 mb-2" itemprop="name">{faq.question}</h3>
+            <div itemscope itemtype="https://schema.org/Answer">
+              <p class="text-gray-600" itemprop="text">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
