@@ -6,19 +6,14 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--no-optional"
 
-# Force HTTPS
+# Force all traffic to HTTPS
 [[redirects]]
-  from = "http://transformationmadeeasy.me/*"
-  to = "https://transformationmadeeasy.me/:splat"
+  from = "http://*"
+  to = "https://:splat"
   status = 301
   force = true
 
-[[redirects]]
-  from = "http://www.transformationmadeeasy.me/*"
-  to = "https://transformationmadeeasy.me/:splat"
-  status = 301
-  force = true
-
+# Redirect www to non-www
 [[redirects]]
   from = "https://www.transformationmadeeasy.me/*"
   to = "https://transformationmadeeasy.me/:splat"
@@ -60,5 +55,13 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "upgrade-insecure-requests"
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "upgrade-insecure-requests; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+[build.processing]
+  skip_processing = false
+
+# SSL/TLS Configuration
+[context.production.environment]
+  HTTPS = "true"
+  NODE_ENV = "production"
