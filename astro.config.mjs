@@ -11,8 +11,9 @@ export default defineConfig({
     tailwind(), 
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/admin/'),
+      filter: (page) => !page.includes('admin') && !page.includes('private') && !page.includes('api'),
       customPages: [
+        'https://transformationmadeeasy.me/',
         'https://transformationmadeeasy.me/about',
         'https://transformationmadeeasy.me/blog',
         'https://transformationmadeeasy.me/medical-weight-loss',
@@ -24,6 +25,9 @@ export default defineConfig({
         'https://transformationmadeeasy.me/privacy',
         'https://transformationmadeeasy.me/terms'
       ],
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date().toISOString()
     })
   ],
   output: 'server',
