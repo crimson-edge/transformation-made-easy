@@ -1,11 +1,10 @@
 [build]
-  command = "npm install --include=optional sharp && npm install && npm run build"
+  command = "npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_FLAGS = "--no-optional"
-  SHARP_IGNORE_GLOBAL_LIBVIPS = "1"
 
 # Force all traffic to HTTPS
 [[redirects]]
